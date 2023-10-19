@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hide Selected Option in Datalists</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <select id="dataList1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+
+       </select>
+       
+       <select id="dataList2">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+       </select>
+       
+       ...
+       ...
+       ...
+       
+       <select id="dataList10">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+       </select>
+    <!-- Add more input elements as needed -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script>
+        function handleChange() {
+ var value = this.value;
+ var options = document.querySelectorAll('option');
+  
+ for (var i = 0; i < options.length; i++) {
+    if (options[i].value === value) {
+      options[i].style.display = 'none';
+    } else {
+      options[i].style.display = 'block';
+    }
+ }
+}
+
+var selectElements = document.querySelectorAll('select');
+
+for (var i = 0; i < selectElements.length; i++) {
+ selectElements[i].addEventListener('change', handleChange);
+}
+
+
+        $(document).ready(function () {
+            $("input").on("input", function () {
+                const selectedOption = $(this).val();
+                const dataLists = $("datalist").not($(this).attr("list"));
+
+                dataLists.each(function () {
+                    $(this).find(`option[value="${selectedOption}"]`).hide();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
