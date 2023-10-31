@@ -4,8 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+  font-family:'Sans-serif';
+}
+h1{
+  color:teal;
+  text-shadow: 1px 2px 3px #333;
+}
+.datainputs{
+  margin-top:20px;
+}
+.datainputs input{
+    font-size: 18px;
+    line-height: 21px;
+    color: #3D3D3D;
+    height: 50px;
+    padding: 0px 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 1px #D8D8D8;
+    margin: 0px 30px 20px 0px !important;
+  }
+input:focus{
+  outline:none;
+}
+.add_input, .inputRemove{
+  display: inline-block;
+  color:#3d3d3d;
+  text-align:center;
+  text-decoration:none;
+  width:auto;
+  height:40px;
+  line-height:40px;
+  border:2px solid #3d3d3d;
+  padding:0px 15px;
+  border-radius: 5px;
+}
+.inputRemove{
+cursor:pointer;
+}
+    </style>
 </head>
 <body>
     
+    <h1>* Add - Remove Text Fields *</h1>
+    <a href="#" id="addmore" class="add_input">Add more</a>
+<div id="req_input" class="datainputs">
+  <input name="fname" placeholder="Text Field 1" type="text">
+  <input name="lname" placeholder="Text Field 2" type="text">
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+  $("#addmore").click(function() {
+    $("#req_input").append('<div class="required_inp"><input name="fname" placeholder="Text Field 1" type="text"><input name="lname" placeholder="Text Field 2" type="text">' + '<input type="button" class="inputRemove" value="Remove"/></div>');
+  });
+  $('body').on('click','.inputRemove',function() {
+    $(this).parent('div.required_inp').remove()
+  });
+});
+</script>
+
 </body>
 </html>
